@@ -1,1 +1,76 @@
+<?xml version="1.0"?>
+<Container version="2">
 
+  <!-- ───────── BASIC INFO ───────── -->
+  <Name>mute</Name>
+  <Repository>meaning/mute-client:latest</Repository>
+  <Registry>https://hub.docker.com/r/meaning/mute-client</Registry>
+  <Network>bridge</Network>
+  <Shell>/bin/sh</Shell>
+  <Privileged>true</Privileged>
+
+  <Support>https://github.com/silkyclouds/mute</Support>
+  <Project>https://muteq.eu/</Project>
+  <Overview>Acoustic Intelligence for Everyone – Real-time noise monitoring and analytics.</Overview>
+  <Category>HomeAutomation:Monitoring:Other</Category>
+  <WebUI></WebUI>
+
+  <!-- ICON -->
+  <Icon>https://raw.githubusercontent.com/silkyclouds/mute-unraid-templates/main/icon.png</Icon>
+
+  <!-- ───────── PATHS & DEVICES ───────── -->
+
+  <Config Name="Config Directory"
+          Target="/config"
+          Default="/mnt/user/appdata/mute"
+          Mode="rw"
+          Description="Directory where the client stores its configuration file (config_client.json)."
+          Type="Path" Display="always" Required="true" />
+
+  <Config Name="USB Device"
+          Target="/dev/bus/usb"
+          Default=""
+          Mode=""
+          Description="Pass through the USB sound level meter or any supported audio meter. 
+To identify the correct device on Unraid, run 'lsusb' in the terminal, then map the corresponding /dev/bus/usb/XXX/YYY path."
+          Type="Device" Display="always" Required="true" />
+
+  <!-- ───────── MQTT (OPTIONAL) ───────── -->
+
+  <Config Name="MQTT Enabled"
+          Target="LOCAL_MQTT_ENABLED"
+          Default="false"
+          Description="Enable MQTT publishing for local Home Assistant / automation integration."
+          Type="Variable" Display="always" Required="false" />
+
+  <Config Name="MQTT Server"
+          Target="LOCAL_MQTT_SERVER"
+          Default=""
+          Description="MQTT broker hostname or IP."
+          Type="Variable" Display="always" Required="false" />
+
+  <Config Name="MQTT Port"
+          Target="LOCAL_MQTT_PORT"
+          Default="1883"
+          Description="MQTT broker port."
+          Type="Variable" Display="always" Required="false" />
+
+  <Config Name="MQTT Username"
+          Target="LOCAL_MQTT_USER"
+          Default=""
+          Description="MQTT username (optional)."
+          Type="Variable" Display="always" Required="false" />
+
+  <Config Name="MQTT Password"
+          Target="LOCAL_MQTT_PASS"
+          Default=""
+          Description="MQTT password (optional)."
+          Type="Variable" Display="always" Required="false" Mask="true" />
+
+  <Config Name="MQTT TLS"
+          Target="LOCAL_MQTT_TLS"
+          Default="false"
+          Description="Enable TLS encryption when connecting to the MQTT broker."
+          Type="Variable" Display="always" Required="false" />
+
+</Container>
